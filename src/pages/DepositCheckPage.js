@@ -1,6 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import PageWrapper from "../components/PageWrapper";
-import {Button, Grid, InputAdornment, TextField, Typography, useTheme} from "@material-ui/core";
+import {
+    Backdrop,
+    Button,
+    CircularProgress,
+    Grid,
+    InputAdornment, makeStyles,
+    TextField,
+    Typography,
+    useTheme
+} from "@material-ui/core";
 import {formatMoney} from "../utils/helpers";
 import useStore from "../store/store";
 import {useSnackbar} from "notistack";
@@ -10,16 +19,25 @@ import ImageDropzone from "../components/ImageDropzone";
 import api from "../services/api";
 import {useHistory} from "react-router-dom";
 
+const useStyles = makeStyles((theme) => ({
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
+}));
 
 const DepositCheckPage = () => {
+    const classes = useStyles();
     let theme = useTheme();
     let history = useHistory();
     const store = useStore(state => state);
     const {control, handleSubmit} = useForm();
     const {enqueueSnackbar, closeSnackbar} = useSnackbar();
     const [selectedPhoto, setSelectedPhoto] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const onSubmit = async (data) => {
+        setLoading(true);
         if (!selectedPhoto) {
             showError("No picture selected.")
             return;
@@ -31,7 +49,7 @@ const DepositCheckPage = () => {
         formData.append("description", data.description);
 
         try {
-            const response = await api.post("customer/deposits", formData, {
+            await api.post("customer/deposits", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -41,6 +59,7 @@ const DepositCheckPage = () => {
         } catch (e) {
             showError(e.response?.data?.message);
         }
+        setLoading(false);
     };
 
     const showError = (message = "An internal error has occurred") => {
@@ -71,6 +90,9 @@ const DepositCheckPage = () => {
 
     return (
         <PageWrapper pageName={"Check deposit"}>
+            <Backdrop className={classes.backdrop} open={loading}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
             <Grid container style={{backgroundColor: theme.palette.secondary.main, marginTop: -5}} xs={12}>
                 <Grid style={{padding: 10, paddingLeft: 20}} xs={6} md={4}>
                     <Grid style={{paddingTop: 0}} xs={9} md={11}>
