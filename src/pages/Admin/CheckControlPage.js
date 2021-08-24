@@ -21,7 +21,7 @@ const CheckControlPage = () => {
         return pendingChecks.map((check) => (
             <>
                 <PendingCheckPageLink to={`admin/deposit/${check.id}/review`}>
-                    <ListItemText primary={check.description} secondary={format(new Date(check.created_at),"MM/dd/y hh:mm a")}/>
+                    <ListItemText primary={check?.user?.username} secondary={format(new Date(check.created_at),"MM/dd/y hh:mm a")}/>
                     <ListItemSecondaryAction>
                         <Typography style={{color: theme.palette.primary.dark}}
                                     variant={"subtitle2"}>{formatMoney(check.amount)}</Typography>
