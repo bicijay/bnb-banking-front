@@ -45,7 +45,7 @@ const DepositCheckPage = () => {
 
         const formData = new FormData();
         formData.append("check_picture", selectedPhoto);
-        formData.append("amount", data.amount * 100);
+        formData.append("amount", data.amount);
         formData.append("description", data.description);
 
         try {

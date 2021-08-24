@@ -8,16 +8,14 @@ const ProtectedImage = (props) => {
 
     const setImage = async () => {
         const response = await api.get(`admin/images/${props.imageId}`, {
-            responseType: "blob"
+            responseType: "arraybuffer"
         });
 
-        const reader = new window.FileReader();
-        reader.readAsDataURL(response.data);
+        const data = `data:${
+            response.headers["content-type"]
+        };base64,${new Buffer(response.data, "binary").toString("base64")}`;
 
-        reader.onload = function () {
-            setImageUrl(reader.result);
-        }
-
+        setImageUrl(data);
     }
 
     const openImageViewer = useCallback((index) => {

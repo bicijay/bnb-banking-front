@@ -87,14 +87,14 @@ const CheckDetails = () => {
                     fullWidth={true}
                     value={currentDeposit?.amount / 100}
                     InputProps={{
-                        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                        startAdornment: <InputAdornment position="start"></InputAdornment>,
                         inputComponent: MoneyInput,
                         readOnly: true,
                     }}
                 />
                 <Grid container justifyContent={"center"} style={{marginTop: 30}}>
                     <ProtectedImage imageId={currentDeposit?.image?.id}
-                                    style={{width: '100%', maxWidth: 500, height: 'auto'}}/>
+                                    style={{maxHeight: 400, width: 'auto', maxWidth: '100%'}}/>
                 </Grid>
                 <Grid xs={12} container>
                     <Grid style={{padding: 5}} xs={6}>

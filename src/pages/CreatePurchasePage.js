@@ -30,7 +30,7 @@ const CreatePurchasePage = () => {
     const onSubmit = async (data) => {
         try {
             const response = await api.post("/customer/purchases", {
-                amount: data.amount * 100,
+                amount: data.amount,
                 description: data.description,
                 purchased_at: data.date
             });
