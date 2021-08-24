@@ -15,6 +15,8 @@ import api from "../services/api";
 import {useSnackbar} from "notistack";
 import {useHistory} from "react-router-dom";
 import MoneyInput from "../components/MoneyInput";
+import {format} from "date-fns";
+
 
 
 const CreatePurchasePage = () => {
@@ -23,6 +25,7 @@ const CreatePurchasePage = () => {
     const {enqueueSnackbar, closeSnackbar} = useSnackbar();
     let theme = useTheme();
     let history = useHistory();
+    const today = format(new Date(), "yyyy-MM-dd");
 
     const onSubmit = async (data) => {
         try {
@@ -94,7 +97,7 @@ const CreatePurchasePage = () => {
                     />
                     <Controller
                         name="date"
-                        defaultValue={"2020-03-09"}
+                        defaultValue={today}
                         control={control}
                         rules={{required: 'Date required'}}
                         render={({field, fieldState}) => (
