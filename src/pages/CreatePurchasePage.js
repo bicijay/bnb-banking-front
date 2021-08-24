@@ -89,7 +89,7 @@ const CreatePurchasePage = () => {
                                 value={field.value}
                                 onChange={field.onChange}
                                 InputProps={{
-                                    startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                                    startAdornment: <InputAdornment position="start"></InputAdornment>,
                                     inputComponent: MoneyInput
                                 }}
                             />
