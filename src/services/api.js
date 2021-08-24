@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const api = axios.create({
     baseURL: 'https://zebaroni.dev/api/',
-    timeout: 1000,
+    timeout: 20000,
     headers: {'Accept': 'application/json'}
 });
 
