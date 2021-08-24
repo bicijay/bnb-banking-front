@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import Datepicker from "../components/Datepicker";
 import AddIcon from "@material-ui/icons/Add";
-import {formatMoney} from "../utils/helpers";
+import {formatDate, formatMoney} from "../utils/helpers";
 import {useHistory} from "react-router-dom";
 import api from "../services/api";
 import ListItemsPlaceholder from "../components/ListItemsWrapper";
@@ -55,7 +55,7 @@ const ExpensesPage = () => {
             return (
                 <>
                     <ListItem>
-                        <ListItemText primary={expense.description} secondary={format(new Date(expense?.purchased_at),"MM/dd/y hh:mm a")}/>
+                        <ListItemText primary={expense.description} secondary={formatDate(expense?.purchased_at)}/>
                         <ListItemSecondaryAction>
                             <Typography style={{color: "red"}}
                                         variant={"subtitle2"}>-{formatMoney(expenseAmount)}</Typography>

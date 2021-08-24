@@ -14,12 +14,12 @@ import {
 import AddIcon from '@material-ui/icons/Add';
 import {blue} from "@material-ui/core/colors";
 import Datepicker from "../components/Datepicker";
-import {formatMoney} from "../utils/helpers";
+import {formatDate, formatMoney} from "../utils/helpers";
 import {useHistory} from "react-router-dom";
 import api from "../services/api";
 import useStore from "../store/store";
 import ListItemsWrapper from "../components/ListItemsWrapper";
-import { format } from 'date-fns'
+import {format} from 'date-fns'
 
 
 const EXPENSE_TYPE = "expense";
@@ -137,7 +137,8 @@ const HomePage = () => {
             return (
                 <>
                     <ListItem>
-                        <ListItemText primary={transaction.description} secondary={format(new Date(transaction?.transaction_at),"MM/dd/y hh:mm a")}/>
+                        <ListItemText primary={transaction.description}
+                                      secondary={formatDate(transaction?.transaction_at)}/>
                         <ListItemSecondaryAction>
                             <Typography style={{color: transactionIsNegative ? "red" : theme.palette.primary.dark}}
                                         variant={"subtitle2"}>{transactionIsNegative && "-"}{formatMoney(transactionAmount)}</Typography>

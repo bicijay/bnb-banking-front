@@ -4,7 +4,7 @@ import {Divider, List, ListItem, ListItemSecondaryAction, ListItemText, Typograp
 import ListItemsWrapper from "../../components/ListItemsWrapper";
 import api from "../../services/api";
 import {format} from "date-fns";
-import {formatMoney} from "../../utils/helpers";
+import {formatDate, formatMoney} from "../../utils/helpers";
 import {useHistory, useParams} from "react-router-dom";
 
 const PendingCheckPageLink = (props) => {
@@ -21,7 +21,7 @@ const CheckControlPage = () => {
         return pendingChecks.map((check) => (
             <>
                 <PendingCheckPageLink to={`admin/deposit/${check.id}/review`}>
-                    <ListItemText primary={check?.user?.username} secondary={format(new Date(check.created_at),"MM/dd/y hh:mm a")}/>
+                    <ListItemText primary={check?.user?.username} secondary={formatDate(check?.created_at)}/>
                     <ListItemSecondaryAction>
                         <Typography style={{color: theme.palette.primary.dark}}
                                     variant={"subtitle2"}>{formatMoney(check.amount)}</Typography>
