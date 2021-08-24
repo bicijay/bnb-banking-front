@@ -137,7 +137,7 @@ const HomePage = () => {
             return (
                 <>
                     <ListItem>
-                        <ListItemText primary={transaction.description} secondary={format(new Date(transaction.created_at),"MM/dd/y hh:mm a")}/>
+                        <ListItemText primary={transaction.description} secondary={format(new Date(transaction.transaction_at),"MM/dd/y hh:mm a")}/>
                         <ListItemSecondaryAction>
                             <Typography style={{color: transactionIsNegative ? "red" : theme.palette.primary.dark}}
                                         variant={"subtitle2"}>{transactionIsNegative && "-"}{formatMoney(transactionAmount)}</Typography>
