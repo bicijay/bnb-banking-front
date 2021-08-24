@@ -85,7 +85,7 @@ const CheckDetails = () => {
                     style={{marginTop: 40}}
                     label={"AMOUNT"}
                     fullWidth={true}
-                    value={currentDeposit?.amount / 100}
+                    value={currentDeposit?.amount}
                     InputProps={{
                         startAdornment: <InputAdornment position="start"></InputAdornment>,
                         inputComponent: MoneyInput,
