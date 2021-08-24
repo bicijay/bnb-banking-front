@@ -55,7 +55,7 @@ const ExpensesPage = () => {
             return (
                 <>
                     <ListItem>
-                        <ListItemText primary={expense.description} secondary={format(new Date(expense.purchased_at),"MM/dd/y hh:mm a")}/>
+                        <ListItemText primary={expense.description} secondary={format(new Date(expense?.purchased_at),"MM/dd/y hh:mm a")}/>
                         <ListItemSecondaryAction>
                             <Typography style={{color: "red"}}
                                         variant={"subtitle2"}>-{formatMoney(expenseAmount)}</Typography>
